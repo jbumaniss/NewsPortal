@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+    {% include('inc/hero.html.twig') %}
+    {% include('inc/categorynav.html.twig') %}
+    <div class="container p-6 rounded-3">
+        <h1 class="text-xl-center h2 m-4"> {{ categoryName | capitalize }} category</h1>
+    </div>
+    <div class="container">
+        <div class="all-news-card container row">
+            {% for article in articles %}
+                <div class="shadow-card w-25 rounded col-md-3 position-relative">
+
+                    <div class="container mt-4">
+                        {% if article.urlToImage != "" %}
+                            <a href="{{ article.url }}" target="_blank">
+                                <img
+                                        class="img-thumbnail img-responsive" alt="There was a picture ^-^"
+                                        src="{{ article.urlToImage }}"
+                                />
+                            </a>
+                        {% endif %}
+                        <div class="text-start">
+                            {% if article.author != "" %}
+                                <p class="m-1">
+                                    <small class="small">{{ article.publishedAt }}</small>
+                                <p class="small">By:
+                                    <em class=" m-1">
+                                        {{ article.author }}
+                                    </em>
+                                </p>
+                            {% endif %}
+                            {% if article.source != "" %}
+                                at: {{ article.source }}
+                            {% endif %}
+
+
+                            <a href="{{ article.url }}" target="_blank" class="linkHomer">
+                                <small class="small">{{ article.title[:40] ~ '...' }}</small>
+                                <small class="small">{{ article.description[:25] ~ '...' }}</small>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
