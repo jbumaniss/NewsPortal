@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+<div class="container m-5">
+    <h1 class="text-center h2">Add article</h1>
+</div>
+
+<div class="container mt-5">
+
+    <form class="row g-3" method="POST" action="/articles">
+        <div class="col-md-6">
+            <label for="author" class="form-label">Author: </label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="Author: "  required>
+        </div>
+        <div class="col-md-6">
+            <label for="title" class="form-label">Title: </label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title: " required>
+        </div>
+        <div class="col-md-8">
+            <label for="description" class="form-label">Description: </label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Description: " required>
+        </div>
+        <div class="col-md-4">
+            <label for="urlToImage" class="form-label">Url to image: </label>
+            <input type="text" class="form-control" id="urlToImage" name="urlToImage" placeholder="urlToImage" required>
+        </div>
+        <div class="col-md-12">
+            <label for="content" class="form-label">Content: </label>
+            <textarea rows="3" class="form-control" id="content" name="content" placeholder="Content: " required></textarea>
+        </div>
+        <div class="col-md-12 mb-4">
+            <button class="btn btn-primary rounded" type="submit" >Add Article</button>
+        </div>
+        <br>
+    </form>
+</div>
+{% endblock %}

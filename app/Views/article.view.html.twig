@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% for article in articles %}
+        <div class="container h4">
+            <a href="/">Back</a>
+        </div>
+        
+        <div class="container p-6 rounded-3">
+            <h1 class="text-xl-center h1 m-4"> {{ article.title | capitalize }}</h1>
+        </div>
+
+        <div class="container all-news-card p-4 rounded-3 w-75 " style="height: 600px">
+
+            <div class="row justify-content-center justify-content-evenly">
+
+                <div class="col-auto ">
+                    {% if article.urlToImage != "" %}
+                        <img class="img-thumbnail img-responsive-article" alt="There was a picture ^-^"
+                             src="{{ article.urlToImage }}"
+                        />
+                    {% endif %}
+                </div>
+
+                <div class="col-auto">
+                    <div class="m-1">
+                        <div class="container mt-4 text-end">{{ article.publishedAt }}</div>
+                        <div class="container text-end">By: {{ article.author }}</div>
+
+                        <div class="container mt-4 text-center h2">{{ article.title}}</div>
+                        <div class="container  text-start h4">{{ article.description}}</div>
+                        <div class="container mt-4 text-center h6">{{ article.content}}</div>
+                    </div>
+
+                </div>
+
+                <div class="container row m-4 position-relative">
+                    <div class="col-auto">
+                        <a href="/article/{{ article.id }}/edit">Edit</a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="#">
+                            <form method="POST" action="/destroy">
+                                <input type="hidden" name="id" value="{{ article.id }}">
+                                <button type="submit" name="destroy">Delete</button>
+                            </form>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
